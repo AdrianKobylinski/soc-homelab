@@ -14,7 +14,7 @@ This VM will host the Wazuh manager, indexer, and dashboard in an all-in-one dep
 | Machine type | Default i440fx |
 | Firmware | SeaBIOS |
 | SCSI controller | VirtIO SCSI single |
-| QEMU Guest Agent | Enabled in Proxmox; guest package pending |
+| QEMU Guest Agent | Enabled in Proxmox and active in the guest |
 | CPU | 1 socket, 4 cores, type `host` |
 | Memory | 8192 MiB fixed |
 | Ballooning | Disabled |
@@ -35,7 +35,7 @@ This VM will host the Wazuh manager, indexer, and dashboard in an all-in-one dep
 | Keyboard | English (US) |
 | Installation type | Standard Ubuntu Server |
 | Third-party drivers | Not selected |
-| Network | DHCP during installation; stable lease pending |
+| Network | DHCP with a router-side reservation |
 | Proxy | None |
 | Archive mirror | Regional Ubuntu archive |
 | Storage | Entire 50 GiB virtual disk with LVM |
@@ -50,7 +50,7 @@ This VM will host the Wazuh manager, indexer, and dashboard in an all-in-one dep
 | Hostname | `wazuh-server` |
 | Administrative user | `socadmin` |
 
-Credentials are stored privately and are not included in this repository.
+Credentials, the live IP address, and the virtual NIC MAC address are stored privately and are not included in this repository.
 
 ## Design decisions
 
@@ -66,9 +66,21 @@ The lab contains only one Proxmox node, so live migration compatibility is not r
 
 Ubuntu's guided LVM layout initially assigned only about half of the virtual disk to the root filesystem. The root logical volume was increased to 45 GB so Wazuh data and operating-system updates have usable space.
 
+### Router-side DHCP reservation
+
+The VM retains DHCP configuration, while the router maps its virtual MAC address to a stable private address. This avoids hard-coding local gateway and DNS details inside the guest while keeping the Wazuh address stable.
+
 ### Temporary trusted-network placement
 
 The VM is initially attached to `vmbr0` for updates and deployment. Before controlled test activity begins, a second lab-facing interface will be added and endpoint traffic will be moved to an isolated bridge.
+
+## Baseline recovery point
+
+| Snapshot | State captured |
+|---|---|
+| `baseline-ubuntu-2404` | Clean and updated Ubuntu, active QEMU Guest Agent, stable DHCP reservation, before Wazuh installation |
+
+The snapshot excludes VM RAM and is intended as a temporary rollback point, not as a backup.
 
 ## Validation checklist
 
@@ -76,11 +88,10 @@ The VM is initially attached to `vmbr0` for updates and deployment. Before contr
 - [x] Ubuntu installer booted from the checksum-verified ISO
 - [x] Ubuntu installation completed successfully
 - [x] VM rebooted from the installed operating system
-- [x] Hostname login prompt displayed
-- [ ] Administrative login validated
-- [ ] Network and Internet access validated
-- [ ] Root filesystem capacity validated
-- [ ] Operating-system updates installed
-- [ ] QEMU Guest Agent installed and active
-- [ ] Stable DHCP reservation configured
-- [ ] Clean baseline snapshot created
+- [x] Administrative login validated
+- [x] Network, gateway, and routing validated
+- [x] Root filesystem capacity validated
+- [x] Operating-system updates installed
+- [x] QEMU Guest Agent installed and active
+- [x] Stable DHCP reservation configured and tested after reboot
+- [x] Clean baseline snapshot created
