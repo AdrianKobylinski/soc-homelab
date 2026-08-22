@@ -7,20 +7,20 @@
 - [x] Configure package repositories
 - [x] Apply available updates
 - [x] Record CPU, memory, root-volume, and VM-pool capacity
-- [ ] Define snapshot and backup naming standards
+- [ ] Define backup naming and retention standards
 
 ## Phase 1 — Wazuh platform
 
-- [x] Download Ubuntu Server 24.04.4 LTS AMD64 ISO
-- [x] Verify the Ubuntu ISO checksum during download
+- [x] Download and checksum-verify Ubuntu Server 24.04.4 LTS AMD64
 - [x] Create the Wazuh virtual machine
 - [x] Install Ubuntu Server
-- [ ] Validate guest resources and networking
-- [ ] Install Ubuntu updates and QEMU Guest Agent
-- [ ] Configure a stable DHCP reservation
+- [x] Validate guest resources, storage, and networking
+- [x] Install Ubuntu updates and QEMU Guest Agent
+- [x] Configure and test a stable DHCP reservation
+- [x] Create the `baseline-ubuntu-2404` snapshot
 - [ ] Install Wazuh manager, indexer, and dashboard
-- [ ] Validate dashboard access
-- [ ] Create a clean deployment snapshot
+- [ ] Validate Wazuh services and dashboard access
+- [ ] Create a post-install Wazuh snapshot
 
 ## Phase 2 — Windows telemetry
 
