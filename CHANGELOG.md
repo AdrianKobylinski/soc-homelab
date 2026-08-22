@@ -10,6 +10,8 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Added the project scope, hardware plan, network design, Proxmox build record, and implementation roadmap.
 - Documented the current Proxmox VE deployment and validation state.
 - Added public-documentation rules for sanitizing network details and secrets.
+- Recorded 6 logical CPUs, 15.42 GiB usable RAM, and 208.95 GiB aggregate Proxmox storage.
+- Adjusted the initial VM storage plan to fit the current host more safely.
 
 ### Completed before repository creation
 
