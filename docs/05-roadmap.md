@@ -13,9 +13,11 @@
 
 - [x] Download Ubuntu Server 24.04.4 LTS AMD64 ISO
 - [x] Verify the Ubuntu ISO checksum during download
-- [ ] Create the Wazuh virtual machine
-- [ ] Install and update Ubuntu Server
-- [ ] Assign a stable address
+- [x] Create the Wazuh virtual machine
+- [x] Install Ubuntu Server
+- [ ] Validate guest resources and networking
+- [ ] Install Ubuntu updates and QEMU Guest Agent
+- [ ] Configure a stable DHCP reservation
 - [ ] Install Wazuh manager, indexer, and dashboard
 - [ ] Validate dashboard access
 - [ ] Create a clean deployment snapshot
