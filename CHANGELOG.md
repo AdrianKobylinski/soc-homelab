@@ -14,11 +14,15 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Defined a staged deployment plan to avoid unsafe storage overcommit.
 - Downloaded Ubuntu Server 24.04.4 LTS AMD64 directly to Proxmox ISO storage.
 - Verified the official SHA-256 checksum during the Proxmox download task.
+- Created VM 100, `wazuh-server`, with 4 vCPU, 8 GB fixed RAM, and a 50 GiB disk.
+- Installed Ubuntu Server 24.04.4 LTS with OpenSSH Server.
+- Added the detailed Wazuh VM build record.
 
 ### Changed
 
 - Limited the initial deployment to Wazuh and one Windows endpoint.
 - Deferred Ubuntu and Kali guests until actual capacity is reviewed or storage is expanded.
+- Expanded the Ubuntu root logical volume from the guided default to 45 GB.
 
 ### Completed before repository creation
 
