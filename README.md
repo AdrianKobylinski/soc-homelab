@@ -2,7 +2,7 @@
 
 A defensive security homelab built on Proxmox VE for SOC monitoring, detection engineering, incident investigation, and incident response practice.
 
-> **Project status:** In progress — clean Ubuntu baseline validated; Wazuh installation is next.
+> **Project status:** In progress — Wazuh 4.14.7 installed and services active; dashboard validation pending.
 
 ## Project goals
 
@@ -19,12 +19,12 @@ A defensive security homelab built on Proxmox VE for SOC monitoring, detection e
 - [x] Configured and validated management networking
 - [x] Recorded host and storage capacity
 - [x] Downloaded and checksum-verified Ubuntu Server 24.04.4 LTS AMD64
-- [x] Created and installed the Ubuntu VM for Wazuh
-- [x] Updated and validated the Ubuntu guest
-- [x] Installed QEMU Guest Agent
+- [x] Created, updated, and validated the Ubuntu VM
 - [x] Configured and tested a stable DHCP reservation
 - [x] Created a clean pre-Wazuh snapshot
-- [ ] Install the Wazuh all-in-one stack
+- [x] Installed Wazuh 4.14.7 all-in-one
+- [x] Validated Wazuh Manager, Indexer, Dashboard, and Filebeat services
+- [ ] Validate dashboard authentication from the analyst laptop
 - [ ] Deploy a Windows monitored endpoint
 - [ ] Create an isolated virtual lab network
 - [ ] Add Linux and Kali systems when capacity permits
@@ -72,6 +72,7 @@ Ubuntu and Kali guests are planned for later phases after reviewing actual stora
 - [Proxmox build record](docs/04-proxmox-build.md)
 - [Implementation roadmap](docs/05-roadmap.md)
 - [Wazuh VM build record](docs/06-wazuh-vm-build.md)
+- [Wazuh installation record](docs/07-wazuh-installation.md)
 - [Change log](CHANGELOG.md)
 
 ## Safety
