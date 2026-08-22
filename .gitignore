@@ -1,0 +1,32 @@
+# Secrets and local configuration
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials/
+secrets/
+
+# Virtual machine and installer images
+*.iso
+*.img
+*.qcow2
+*.vmdk
+*.vdi
+*.ova
+*.ovf
+
+# Archives, logs, and temporary files
+*.log
+*.tmp
+*.bak
+*.zip
+*.tar
+*.tar.gz
+
+# Editor and operating-system metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
