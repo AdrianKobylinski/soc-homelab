@@ -6,12 +6,13 @@
 - [x] Configure static management networking
 - [x] Configure package repositories
 - [x] Apply available updates
-- [ ] Record complete hardware and storage inventory
+- [x] Record CPU, memory, root-volume, and VM-pool capacity
 - [ ] Define snapshot and backup naming standards
 
 ## Phase 1 — Wazuh platform
 
-- [ ] Upload Ubuntu Server 24.04 LTS ISO
+- [x] Download Ubuntu Server 24.04.4 LTS AMD64 ISO
+- [x] Verify the Ubuntu ISO checksum during download
 - [ ] Create the Wazuh virtual machine
 - [ ] Install and update Ubuntu Server
 - [ ] Assign a stable address
@@ -30,7 +31,8 @@
 
 ## Phase 3 — Linux telemetry
 
-- [ ] Create an Ubuntu endpoint
+- [ ] Review actual host and thin-pool capacity
+- [ ] Create an Ubuntu endpoint if capacity permits
 - [ ] Install Wazuh Agent
 - [ ] Validate authentication, sudo, inventory, and file-integrity events
 - [ ] Create a clean endpoint snapshot
@@ -38,13 +40,14 @@
 ## Phase 4 — Network isolation
 
 - [ ] Create internal Proxmox bridge `vmbr1`
-- [ ] Define the `10.10.10.0/24` lab subnet
+- [ ] Define the isolated lab subnet
 - [ ] Add the Wazuh lab interface
 - [ ] Move endpoints to the isolated network
 - [ ] Validate separation from the trusted LAN
 
 ## Phase 5 — Controlled validation
 
+- [ ] Review or expand storage before adding Kali
 - [ ] Deploy Kali Linux
 - [ ] Generate authorized test events against owned lab endpoints
 - [ ] Investigate alerts in Wazuh
