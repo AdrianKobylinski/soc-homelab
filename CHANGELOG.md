@@ -12,6 +12,8 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Added public-documentation rules for sanitizing network details and secrets.
 - Recorded the Intel Core i5-8500 CPU, 15.42 GiB usable RAM, 67.73 GiB root volume, and 151.64 GiB LVM-Thin VM pool.
 - Defined a staged deployment plan to avoid unsafe storage overcommit.
+- Downloaded Ubuntu Server 24.04.4 LTS AMD64 directly to Proxmox ISO storage.
+- Verified the official SHA-256 checksum during the Proxmox download task.
 
 ### Changed
 
