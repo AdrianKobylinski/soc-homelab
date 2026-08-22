@@ -20,11 +20,12 @@ A defensive security homelab built on Proxmox VE for SOC monitoring, detection e
 - [x] Enabled the official no-subscription repository
 - [x] Updated the Proxmox host
 - [x] Validated remote web management
+- [x] Recorded host and storage capacity
 - [ ] Deploy Ubuntu Server 24.04 LTS
 - [ ] Install the Wazuh all-in-one stack
-- [ ] Deploy Windows and Linux monitored endpoints
+- [ ] Deploy a Windows monitored endpoint
 - [ ] Create an isolated virtual lab network
-- [ ] Add Kali Linux for controlled security testing
+- [ ] Add Linux and Kali systems when capacity permits
 - [ ] Build and document detection scenarios
 
 ## Planned architecture
@@ -43,16 +44,23 @@ flowchart LR
 
 The endpoint and test systems will later be moved to an isolated Proxmox bridge. The Wazuh dashboard and Proxmox management interface will remain reachable only from the trusted home network.
 
-## Planned virtual machines
+## Confirmed host capacity
 
-| System | Role | vCPU | RAM | Storage |
+| Resource | Confirmed capacity |
+|---|---|
+| CPU | Intel Core i5-8500, 6 cores/6 threads |
+| RAM | 15.42 GiB usable |
+| VM storage | 151.64 GiB LVM-Thin |
+| Host/ISO storage | 67.73 GiB root volume |
+
+## Initial deployment plan
+
+| System | Role | vCPU | RAM | Disk |
 |---|---|---:|---:|---:|
-| Wazuh on Ubuntu Server 24.04 | SIEM, indexing, alerting, dashboard | 4 | 8 GB | 50–80 GB |
+| Wazuh on Ubuntu Server 24.04 | SIEM, indexing, alerting, dashboard | 4 | 8 GB | 50 GB |
 | Windows endpoint | Windows telemetry, Sysmon, Wazuh agent | 2 | 4 GB | 64 GB |
-| Ubuntu endpoint | Linux logs, audit and Wazuh agent | 1–2 | 2 GB | 25 GB |
-| Kali Linux | Controlled event generation | 2 | 2–3 GB | 35–40 GB |
 
-Because the host has 16 GB of RAM, only the machines required for a given exercise will run at the same time.
+Ubuntu and Kali guests are planned for later phases after reviewing actual storage and memory usage. Because the host has 16 GB of RAM, only machines required for the current exercise will run at the same time.
 
 ## Documentation
 
