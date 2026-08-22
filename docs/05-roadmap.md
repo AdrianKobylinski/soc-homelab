@@ -20,10 +20,13 @@
 - [x] Create the `baseline-ubuntu-2404` snapshot
 - [x] Install Wazuh 4.14.7 manager, indexer, dashboard, and Filebeat
 - [x] Validate all four Wazuh services
-- [ ] Validate dashboard authentication from the trusted laptop
-- [ ] Protect the generated credential archive
-- [ ] Apply the Wazuh repository update policy
-- [ ] Create a post-install Wazuh snapshot
+- [x] Validate dashboard authentication from the trusted laptop
+- [x] Confirm the expected initial agent count of zero
+- [x] Protect the generated credential archive with root-only permissions
+- [x] Disable the Wazuh repository to prevent accidental upgrades
+- [x] Apply pending Ubuntu package updates
+- [x] Enable the Wazuh VM to start with the Proxmox host
+- [x] Create the `wazuh-4147-installed` post-install snapshot
 
 ## Phase 2 — Windows telemetry
 
