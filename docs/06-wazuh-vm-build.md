@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This VM will host the Wazuh manager, indexer, and dashboard in an all-in-one deployment for a small SOC training environment.
+This VM hosts the Wazuh manager, indexer, and dashboard in an all-in-one deployment for a small SOC training environment.
 
 ## Proxmox configuration
 
@@ -25,7 +25,7 @@ This VM will host the Wazuh manager, indexer, and dashboard in an all-in-one dep
 | Network model | VirtIO |
 | Initial bridge | `vmbr0` |
 | Proxmox firewall flag | Enabled |
-| Start at boot | Disabled during initial build |
+| Start at boot | Enabled after platform validation |
 
 ## Ubuntu installation choices
 
@@ -74,13 +74,18 @@ The VM retains DHCP configuration, while the router maps its virtual MAC address
 
 The VM is initially attached to `vmbr0` for updates and deployment. Before controlled test activity begins, a second lab-facing interface will be added and endpoint traffic will be moved to an isolated bridge.
 
-## Baseline recovery point
+### Automatic startup
+
+The Wazuh VM is configured to start with the Proxmox host. This restores the monitoring platform automatically after a planned host restart or power restoration.
+
+## Recovery points
 
 | Snapshot | State captured |
 |---|---|
 | `baseline-ubuntu-2404` | Clean and updated Ubuntu, active QEMU Guest Agent, stable DHCP reservation, before Wazuh installation |
+| `wazuh-4147-installed` | Operational Wazuh 4.14.7, validated dashboard and services, protected credentials, and disabled Wazuh repository |
 
-The snapshot excludes VM RAM and is intended as a temporary rollback point, not as a backup.
+Both snapshots exclude VM RAM and provide local rollback points. They are not substitutes for independent backups.
 
 ## Validation checklist
 
@@ -95,3 +100,5 @@ The snapshot excludes VM RAM and is intended as a temporary rollback point, not 
 - [x] QEMU Guest Agent installed and active
 - [x] Stable DHCP reservation configured and tested after reboot
 - [x] Clean baseline snapshot created
+- [x] Start at boot enabled
+- [x] Post-install Wazuh snapshot created
