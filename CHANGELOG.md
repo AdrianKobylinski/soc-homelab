@@ -20,13 +20,21 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Created the pre-Wazuh snapshot `baseline-ubuntu-2404`.
 - Installed Wazuh 4.14.7 using the official all-in-one installation assistant.
 - Validated active Wazuh Manager, Indexer, Dashboard, and Filebeat services.
-- Added the Wazuh installation record and credential-handling policy.
+- Validated Wazuh Dashboard HTTPS access and administrator authentication from the trusted laptop.
+- Confirmed the expected initial state of zero registered endpoint agents.
+- Secured the Wazuh credential archive with `root:root` ownership and `600` permissions.
+- Disabled the Wazuh APT repository to prevent accidental component upgrades.
+- Recorded the initial post-install memory, swap, and root-filesystem utilization.
+- Enabled automatic startup for the Wazuh VM.
+- Created the post-install snapshot `wazuh-4147-installed` without VM RAM.
+- Added the completed Wazuh installation and validation record.
 
 ### Changed
 
 - Limited the initial deployment to Wazuh and one Windows endpoint.
 - Deferred Ubuntu and Kali guests until actual capacity is reviewed or storage is expanded.
 - Expanded the Ubuntu root logical volume from the guided default to 45 GB.
+- Applied the pending Ubuntu package updates and revalidated all Wazuh services.
 
 ### Completed before repository creation
 
