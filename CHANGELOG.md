@@ -18,7 +18,9 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Installed and validated QEMU Guest Agent.
 - Configured a router-side DHCP reservation and verified it after reboot.
 - Created the pre-Wazuh snapshot `baseline-ubuntu-2404`.
-- Added the detailed Wazuh VM build record.
+- Installed Wazuh 4.14.7 using the official all-in-one installation assistant.
+- Validated active Wazuh Manager, Indexer, Dashboard, and Filebeat services.
+- Added the Wazuh installation record and credential-handling policy.
 
 ### Changed
 
