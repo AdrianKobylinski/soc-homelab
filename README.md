@@ -2,7 +2,7 @@
 
 A defensive security homelab built on Proxmox VE for SOC monitoring, detection engineering, incident investigation, and incident response practice.
 
-> **Project status:** In progress — hypervisor deployed, monitoring stack planned.
+> **Project status:** In progress — hypervisor deployed, Ubuntu Server installation media verified.
 
 ## Project goals
 
@@ -21,7 +21,8 @@ A defensive security homelab built on Proxmox VE for SOC monitoring, detection e
 - [x] Updated the Proxmox host
 - [x] Validated remote web management
 - [x] Recorded host and storage capacity
-- [ ] Deploy Ubuntu Server 24.04 LTS
+- [x] Downloaded and checksum-verified Ubuntu Server 24.04.4 LTS AMD64
+- [ ] Create and install the Wazuh Ubuntu VM
 - [ ] Install the Wazuh all-in-one stack
 - [ ] Deploy a Windows monitored endpoint
 - [ ] Create an isolated virtual lab network
