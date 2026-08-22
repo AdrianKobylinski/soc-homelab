@@ -2,7 +2,7 @@
 
 A defensive security homelab built on Proxmox VE for SOC monitoring, detection engineering, incident investigation, and incident response practice.
 
-> **Project status:** In progress — Wazuh 4.14.7 installed and services active; dashboard validation pending.
+> **Project status:** In progress — Wazuh 4.14.7 is operational and the dashboard is validated; the Windows telemetry endpoint is next.
 
 ## Project goals
 
@@ -24,7 +24,10 @@ A defensive security homelab built on Proxmox VE for SOC monitoring, detection e
 - [x] Created a clean pre-Wazuh snapshot
 - [x] Installed Wazuh 4.14.7 all-in-one
 - [x] Validated Wazuh Manager, Indexer, Dashboard, and Filebeat services
-- [ ] Validate dashboard authentication from the analyst laptop
+- [x] Validated dashboard authentication from the analyst laptop
+- [x] Secured the generated credential archive
+- [x] Disabled the Wazuh repository to prevent accidental component upgrades
+- [x] Enabled VM start at boot and created a post-install snapshot
 - [ ] Deploy a Windows monitored endpoint
 - [ ] Create an isolated virtual lab network
 - [ ] Add Linux and Kali systems when capacity permits
