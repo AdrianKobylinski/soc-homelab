@@ -18,8 +18,11 @@
 - [x] Install Ubuntu updates and QEMU Guest Agent
 - [x] Configure and test a stable DHCP reservation
 - [x] Create the `baseline-ubuntu-2404` snapshot
-- [ ] Install Wazuh manager, indexer, and dashboard
-- [ ] Validate Wazuh services and dashboard access
+- [x] Install Wazuh 4.14.7 manager, indexer, dashboard, and Filebeat
+- [x] Validate all four Wazuh services
+- [ ] Validate dashboard authentication from the trusted laptop
+- [ ] Protect the generated credential archive
+- [ ] Apply the Wazuh repository update policy
 - [ ] Create a post-install Wazuh snapshot
 
 ## Phase 2 — Windows telemetry
