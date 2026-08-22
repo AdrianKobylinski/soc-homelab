@@ -12,10 +12,12 @@ All notable infrastructure and documentation changes are recorded here. Live net
 - Added public-documentation rules for sanitizing network details and secrets.
 - Recorded the Intel Core i5-8500 CPU, 15.42 GiB usable RAM, 67.73 GiB root volume, and 151.64 GiB LVM-Thin VM pool.
 - Defined a staged deployment plan to avoid unsafe storage overcommit.
-- Downloaded Ubuntu Server 24.04.4 LTS AMD64 directly to Proxmox ISO storage.
-- Verified the official SHA-256 checksum during the Proxmox download task.
+- Downloaded and checksum-verified Ubuntu Server 24.04.4 LTS AMD64.
 - Created VM 100, `wazuh-server`, with 4 vCPU, 8 GB fixed RAM, and a 50 GiB disk.
-- Installed Ubuntu Server 24.04.4 LTS with OpenSSH Server.
+- Installed and updated Ubuntu Server 24.04.4 LTS with OpenSSH Server.
+- Installed and validated QEMU Guest Agent.
+- Configured a router-side DHCP reservation and verified it after reboot.
+- Created the pre-Wazuh snapshot `baseline-ubuntu-2404`.
 - Added the detailed Wazuh VM build record.
 
 ### Changed
