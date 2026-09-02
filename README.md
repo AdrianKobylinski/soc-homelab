@@ -2,7 +2,7 @@
 
 A defensive security homelab built on Proxmox VE for SOC monitoring, detection engineering, incident investigation, and incident response practice.
 
-> **Project status:** In progress — Wazuh 4.14.7 is operational and the dashboard is validated; the Windows telemetry endpoint is next.
+> **Project status:** In progress — the Wazuh platform and one Windows endpoint are operational. Sysmon collection and the first custom detection case have been validated. Network isolation, enhanced PowerShell logging, Linux telemetry, and a Kali test host remain planned.
 
 ## Project goals
 
@@ -15,57 +15,44 @@ A defensive security homelab built on Proxmox VE for SOC monitoring, detection e
 
 ## Current status
 
-- [x] Installed and updated Proxmox VE 9.2.x
+- [x] Installed and updated Proxmox VE
 - [x] Configured and validated management networking
-- [x] Recorded host and storage capacity
-- [x] Downloaded and checksum-verified Ubuntu Server 24.04.4 LTS AMD64
-- [x] Created, updated, and validated the Ubuntu VM
-- [x] Configured and tested a stable DHCP reservation
-- [x] Created a clean pre-Wazuh snapshot
-- [x] Installed Wazuh 4.14.7 all-in-one
-- [x] Validated Wazuh Manager, Indexer, Dashboard, and Filebeat services
-- [x] Validated dashboard authentication from the analyst laptop
-- [x] Secured the generated credential archive
-- [x] Disabled the Wazuh repository to prevent accidental component upgrades
-- [x] Enabled VM start at boot and created a post-install snapshot
-- [ ] Deploy a Windows monitored endpoint
+- [x] Created and validated the Ubuntu-based Wazuh VM
+- [x] Installed and validated Wazuh 4.14.7 all-in-one
+- [x] Enabled automatic startup and created recovery points
+- [x] Created and fully updated a Windows 11 Enterprise evaluation endpoint
+- [x] Installed and enrolled Wazuh Agent 4.14.7
+- [x] Installed Sysmon 15.21 and enabled collection of its Operational channel
+- [x] Validated a custom command-shell detection mapped to MITRE ATT&CK
+- [x] Completed the first documented alert-triage case
+- [ ] Normalize endpoint naming and revalidate after reboot
+- [ ] Enable and validate enhanced PowerShell logging
 - [ ] Create an isolated virtual lab network
-- [ ] Add Linux and Kali systems when capacity permits
-- [ ] Build and document detection scenarios
+- [ ] Add a Linux endpoint when capacity permits
+- [ ] Add Kali Linux after isolation and capacity checks are complete
 
-## Planned architecture
+## Target architecture
+
+The diagram below represents the **planned target**, not a list of systems already installed. Kali Linux is not currently deployed.
 
 ```mermaid
 flowchart LR
-    Laptop["Analyst laptop"] -->|"HTTPS management"| Router["Home router"]
-    Router -->|"Ethernet"| PVE["Dell / Proxmox VE"]
-    PVE --> Wazuh["Wazuh SIEM/XDR"]
-    PVE --> Endpoints["Windows and Linux endpoints"]
-    PVE --> Kali["Kali test host"]
-    Kali -->|"Controlled lab activity"| Endpoints
-    Endpoints -->|"Logs and telemetry"| Wazuh
+    Laptop["Analyst laptop"] -->|"Trusted management"| PVE["Proxmox host"]
+    PVE --> Wazuh["Wazuh — operational"]
+    PVE --> Windows["Windows endpoint — operational"]
+    PVE -.-> Linux["Linux endpoint — planned"]
+    PVE -.-> Kali["Kali test host — planned"]
+    Kali -.->|"Controlled activity after isolation"| Windows
+    Windows -->|"Logs and Sysmon telemetry"| Wazuh
+    Linux -.->|"Logs and telemetry"| Wazuh
     Wazuh -->|"Alerts and investigation"| Laptop
 ```
 
-The endpoint and test systems will later be moved to an isolated Proxmox bridge. The Wazuh dashboard and Proxmox management interface will remain reachable only from the trusted home network.
+Kali will be introduced only after the endpoint network is isolated and host capacity has been reviewed. Its role will be limited to authorized activity against lab-owned targets.
 
-## Confirmed host capacity
+## Resource strategy
 
-| Resource | Confirmed capacity |
-|---|---|
-| CPU | Intel Core i5-8500, 6 cores/6 threads |
-| RAM | 15.42 GiB usable |
-| VM storage | 151.64 GiB LVM-Thin |
-| Host/ISO storage | 67.73 GiB root volume |
-
-## Initial deployment plan
-
-| System | Role | vCPU | RAM | Disk |
-|---|---|---:|---:|---:|
-| Wazuh on Ubuntu Server 24.04 | SIEM, indexing, alerting, dashboard | 4 | 8 GB | 50 GB |
-| Windows endpoint | Windows telemetry, Sysmon, Wazuh agent | 2 | 4 GB | 64 GB |
-
-Ubuntu and Kali guests are planned for later phases after reviewing actual storage and memory usage. Because the host has 16 GB of RAM, only machines required for the current exercise will run at the same time.
+The lab runs on a single resource-constrained host. Only systems required for the active exercise are powered on, and future guests depend on measured capacity rather than storage or memory overcommit assumptions.
 
 ## Documentation
 
@@ -76,12 +63,15 @@ Ubuntu and Kali guests are planned for later phases after reviewing actual stora
 - [Implementation roadmap](docs/05-roadmap.md)
 - [Wazuh VM build record](docs/06-wazuh-vm-build.md)
 - [Wazuh installation record](docs/07-wazuh-installation.md)
+- [Windows endpoint build record](docs/08-windows-endpoint.md)
+- [Detection case 001 — Sysmon command shell](docs/09-sysmon-command-shell-case.md)
 - [Change log](CHANGELOG.md)
 
 ## Safety
 
-This environment is intended exclusively for authorized defensive-security education. Test activity will be limited to systems owned by the lab operator and placed inside the isolated lab network. No lab service will be exposed directly to the public Internet.
+This environment is intended exclusively for authorized defensive-security education. Test activity is limited to systems owned by the lab operator. No lab service will be exposed directly to the public Internet.
 
 ## Repository policy
 
-Secrets, credentials, private keys, VM images, ISO files, and sensitive screenshots are excluded from this repository. Screenshots are reviewed and cropped before publication.
+Credentials, keys, private addresses, MAC addresses, internal identifiers, administrative paths, VM images, ISO files, and raw screenshots are excluded. Evidence is summarized or sanitized before publication.
+

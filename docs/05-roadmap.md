@@ -1,72 +1,75 @@
 # Implementation roadmap
 
+A checked item is implemented and validated. An unchecked item is planned; appearance in this roadmap does not mean the component is already installed.
+
 ## Phase 0 — Hypervisor foundation
 
-- [x] Install Proxmox VE
-- [x] Configure static management networking
-- [x] Configure package repositories
-- [x] Apply available updates
-- [x] Record CPU, memory, root-volume, and VM-pool capacity
+- [x] Install and update Proxmox VE
+- [x] Configure management networking
+- [x] Record resource capacity
 - [ ] Define backup naming and retention standards
 
 ## Phase 1 — Wazuh platform
 
-- [x] Download and checksum-verify Ubuntu Server 24.04.4 LTS AMD64
-- [x] Create the Wazuh virtual machine
-- [x] Install Ubuntu Server
+- [x] Create and update the Ubuntu Server VM
 - [x] Validate guest resources, storage, and networking
-- [x] Install Ubuntu updates and QEMU Guest Agent
-- [x] Configure and test a stable DHCP reservation
-- [x] Create the `baseline-ubuntu-2404` snapshot
-- [x] Install Wazuh 4.14.7 manager, indexer, dashboard, and Filebeat
-- [x] Validate all four Wazuh services
-- [x] Validate dashboard authentication from the trusted laptop
-- [x] Confirm the expected initial agent count of zero
-- [x] Protect the generated credential archive with root-only permissions
-- [x] Disable the Wazuh repository to prevent accidental upgrades
-- [x] Apply pending Ubuntu package updates
-- [x] Enable the Wazuh VM to start with the Proxmox host
-- [x] Create the `wazuh-4147-installed` post-install snapshot
+- [x] Install Wazuh 4.14.7 all-in-one
+- [x] Validate Manager, Indexer, Dashboard, and Filebeat
+- [x] Protect locally generated credential material
+- [x] Prevent unplanned independent component upgrades
+- [x] Enable automatic startup and create recovery points
+- [x] Revalidate services and dashboard authentication after credential maintenance
 
 ## Phase 2 — Windows telemetry
 
-- [ ] Create the Windows endpoint
-- [ ] Apply operating-system updates
-- [ ] Install Wazuh Agent
-- [ ] Install and configure Sysmon
-- [ ] Validate security, process, and PowerShell telemetry
-- [ ] Create a clean endpoint snapshot
+- [x] Create and install the Windows 11 endpoint
+- [x] Apply operating-system and Defender updates
+- [x] Install paravirtualized drivers and guest integration
+- [x] Create clean recovery points
+- [x] Install and enroll Wazuh Agent 4.14.7
+- [x] Confirm the endpoint reports as active
+- [x] Install Sysmon 15.21 with a community baseline
+- [x] Forward the Sysmon Operational channel through Wazuh Agent
+- [x] Validate process telemetry and custom-rule alerting
+- [ ] Normalize the Windows computer name and revalidate after reboot
+- [ ] Enable and validate enhanced PowerShell logging
+- [ ] Confirm a current post-Sysmon recovery point
 
 ## Phase 3 — Linux telemetry
 
-- [ ] Review actual host and thin-pool capacity
+- [ ] Review current host capacity
 - [ ] Create an Ubuntu endpoint if capacity permits
 - [ ] Install Wazuh Agent
 - [ ] Validate authentication, sudo, inventory, and file-integrity events
-- [ ] Create a clean endpoint snapshot
+- [ ] Create a clean recovery point
 
 ## Phase 4 — Network isolation
 
-- [ ] Create internal Proxmox bridge `vmbr1`
-- [ ] Define the isolated lab subnet
-- [ ] Add the Wazuh lab interface
+- [ ] Create an internal Proxmox bridge
+- [ ] Define an isolated lab subnet
+- [ ] Add the required Wazuh lab interface
 - [ ] Move endpoints to the isolated network
 - [ ] Validate separation from the trusted LAN
 
-## Phase 5 — Controlled validation
+## Phase 5 — Controlled validation and attack emulation
 
-- [ ] Review or expand storage before adding Kali
-- [ ] Deploy Kali Linux
-- [ ] Generate authorized test events against owned lab endpoints
-- [ ] Investigate alerts in Wazuh
-- [ ] Map findings to MITRE ATT&CK
+- [x] Generate an authorized benign command-shell test
+- [x] Create and validate a local Wazuh detection
+- [x] Investigate the resulting Sysmon process-creation alert
+- [x] Reconstruct the process chain using indexed telemetry and live response
+- [x] Map the detection to MITRE ATT&CK `T1059.003`
+- [x] Produce the first detection-case report
+- [ ] Review capacity before adding Kali
+- [ ] Complete network isolation before adding Kali
+- [ ] Deploy Kali Linux as a controlled test source
+- [ ] Generate additional authorized scenarios against owned lab endpoints
 - [ ] Document false positives and tuning decisions
-- [ ] Produce the first incident report
 
 ## Phase 6 — Operations and recovery
 
 - [ ] Configure scheduled backups
 - [ ] Test VM restoration
 - [ ] Document startup and shutdown order
-- [ ] Review repository for sensitive information
+- [ ] Review the repository for sensitive information
 - [ ] Publish a final architecture diagram and project summary
+
